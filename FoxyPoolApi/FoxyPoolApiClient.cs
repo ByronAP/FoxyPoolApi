@@ -1,4 +1,4 @@
-﻿using FoxyPoolApi.Responses;
+using FoxyPoolApi.Responses;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 using RestSharp;
@@ -12,7 +12,7 @@ namespace FoxyPoolApi
     public class FoxyPoolApiClient : IDisposable
     {
         public Pools Pool { get; }
-        public bool IgnoreCertErrors { get; set; }
+        public bool IgnoreCertErrors { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         private readonly RestClient _restClient;
         private readonly IMemoryCache _memCache;
