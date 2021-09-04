@@ -6,15 +6,15 @@
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Authors>ByronAP</Authors>
-    <Description>API for the Foxy Pool Chia and Spare mining pools</Description>
-    <Summary>API for the Foxy Pool Chia and Spare mining pools</Summary>
+    <Description>API for the Foxy Pool Chia and Flax mining pools</Description>
+    <Summary>API for the Foxy Pool Chia and Flax mining pools</Summary>
     <Title>Foxy Pool Api Client</Title>
     <Copyright>© 2008-2021 ByronAP</Copyright>
     <PackageProjectUrl>https://github.com/ByronAP/FoxyPoolApi</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/ByronAP/FoxyPoolApi</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>foxypool,foxy,pool,api,chia,spare,mining</PackageTags>
+    <PackageTags>foxypool,foxy,pool,api,chia,flax,mining</PackageTags>
     <Version>0.1.2</Version>
     <AssemblyVersion>0.1.2</AssemblyVersion>
     <FileVersion>0.1.2</FileVersion>
