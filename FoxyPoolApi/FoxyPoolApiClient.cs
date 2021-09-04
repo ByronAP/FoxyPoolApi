@@ -19,33 +19,45 @@ namespace FoxyPoolApi
         private readonly ILogger<FoxyPoolApiClient>? _logger;
         private bool _disposedValue;
 
-        public FoxyPoolApiClient(Pools pool, IMemoryCache memCache, ILogger<FoxyPoolApiClient> logger)
+
+        public FoxyPoolApiClient(Pools pool, ILogger<FoxyPoolApiClient> logger)
         {
             Pool = pool;
             _logger = logger;
-            _memCache = memCache;
 
-            _restClient = new RestClient($"{Constants.PoolBaseUrl}/{Constants.PoolApiVersion}/{pool.ToString().Replace("_", "-").ToLowerInvariant()}");
+            _memCache = BuildNewMemoryCacheInstance();
+
+            _restClient = BuildNewRestClient();
 
             _logger.LogDebug("Created new FoxyPoolApi instance");
         }
 
         public FoxyPoolApiClient(Pools pool)
         {
+            Pool = pool;
+            _logger = null;
+
+            _memCache = BuildNewMemoryCacheInstance();
+            _restClient = BuildNewRestClient();
+
+#if DEBUG
+            Console.WriteLine($"{DateTime.UtcNow}: Created new FoxyPoolApi instance.");
+#endif
+        }
+
+        private static IMemoryCache BuildNewMemoryCacheInstance()
+        {
             var memCacheOptions = new MemoryCacheOptions
             {
                 ExpirationScanFrequency = TimeSpan.FromSeconds(2)
             };
 
-            Pool = pool;
-            _logger = null;
+            return new MemoryCache(memCacheOptions);
+        }
 
-            _memCache = new MemoryCache(memCacheOptions);
-            _restClient = new RestClient($"{Constants.PoolBaseUrl}/{Constants.PoolApiVersion}/{pool.ToString().Replace("_", "-").ToLowerInvariant()}");
-
-#if DEBUG
-            Console.WriteLine($"{DateTime.UtcNow}: Created new FoxyPoolApi instance.");
-#endif
+        private RestClient BuildNewRestClient()
+        {
+            return new RestClient($"{Constants.PoolBaseUrl}/{Constants.PoolApiVersion}/{Pool.ToString().Replace("_", "-").ToLowerInvariant()}");
         }
 
         public Task<ConfigResponse> GetConfigAsync()
