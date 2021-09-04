@@ -1,6 +1,6 @@
 # Foxy Pool API
 
-<img src="fox-128.png" width="64px"> 
+<img src="https://raw.githubusercontent.com/ByronAP/FoxyPoolApi/main/Assets/fox-128.png" width="64px"> 
 
 FoxyPoolApi is a .NET library that simplifies the integration of the Foxy Pool API.
 
@@ -10,7 +10,7 @@ Api Docs: https://api-docs.foxypool.io
 
 ## Installation
 
-Package available [![NuGet version (SoftCircuits.Silk)](https://img.shields.io/nuget/v/ByronAP.Net.WebSockets.svg?style=flat-square)](https://www.nuget.org/packages/ByronAP.Net.WebSockets/)
+Package available [![NuGet version (SoftCircuits.Silk)](https://img.shields.io/nuget/v/FoxyPoolApi.svg?style=flat-square)](https://www.nuget.org/packages/FoxyPoolApi/)
 
 ## Usage
 
