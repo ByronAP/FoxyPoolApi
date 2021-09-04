@@ -1,4 +1,4 @@
-using FoxyPoolApi.Responses;
+﻿using FoxyPoolApi.Responses;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 using RestSharp;
