@@ -25,8 +25,8 @@ namespace FoxyPoolApiDemo
     {
         private static async Task Main()
         {
-            Console.WriteLine($"Creating FoxyPool Api Client Instance.{Environment.NewLine}");
-            using var apiClient = new FoxyPoolApiClient(Pools.Chia_OG);
+            Console.WriteLine($"Creating FoxyPool POST Api Client Instance.{Environment.NewLine}");
+            using var apiClient = new PostApiClient(PostPool.Chia_OG);
 
             Console.WriteLine("Requesting Pool Config.");
             var poolConfig = await apiClient.GetConfigAsync();
