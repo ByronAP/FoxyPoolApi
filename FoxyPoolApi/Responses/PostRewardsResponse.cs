@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace FoxyPoolApi.Responses
 {
-    public class RewardsResponse
+    public class PostRewardsResponse
     {
         [JsonProperty("recentlyWonBlocks")]
         public List<RecentlyWonBlock> RecentlyWonBlocks { get; set; }
@@ -15,7 +15,7 @@ namespace FoxyPoolApi.Responses
         [JsonProperty("averageEffort")]
         public decimal AverageEffort { get; set; }
 
-        public static RewardsResponse FromJson(string json) => JsonConvert.DeserializeObject<RewardsResponse>(json);
+        public static PostRewardsResponse FromJson(string json) => JsonConvert.DeserializeObject<PostRewardsResponse>(json);
     }
 
     public class RecentlyWonBlock

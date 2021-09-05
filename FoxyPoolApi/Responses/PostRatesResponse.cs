@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace FoxyPoolApi.Responses
 {
-    public class RatesResponse
+    public class PostRatesResponse
     {
         [JsonProperty("rates")]
         public Dictionary<string, decimal> Rates { get; set; }
@@ -11,6 +11,6 @@ namespace FoxyPoolApi.Responses
         [JsonProperty("currencies")]
         public List<string> Currencies { get; set; }
 
-        public static RatesResponse FromJson(string json) => JsonConvert.DeserializeObject<RatesResponse>(json);
+        public static PostRatesResponse FromJson(string json) => JsonConvert.DeserializeObject<PostRatesResponse>(json);
     }
 }

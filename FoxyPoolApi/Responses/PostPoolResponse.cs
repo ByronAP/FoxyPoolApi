@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace FoxyPoolApi.Responses
 {
-    public class PoolResponse
+    public class PostPoolResponse
     {
         [JsonProperty("height")]
         public ulong Height { get; set; }
@@ -24,7 +24,7 @@ namespace FoxyPoolApi.Responses
         [JsonProperty("events")]
         public List<PoolEvent> Events { get; set; }
 
-        public static PoolResponse FromJson(string json) => JsonConvert.DeserializeObject<PoolResponse>(json);
+        public static PostPoolResponse FromJson(string json) => JsonConvert.DeserializeObject<PostPoolResponse>(json);
     }
 
     public class PoolEvent

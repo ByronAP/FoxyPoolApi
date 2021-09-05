@@ -1,26 +1,33 @@
 ﻿using FoxyPoolApi;
+using System;
 using System.Threading.Tasks;
 using Xunit;
 
 namespace FoxyPoolApiTests
 {
-    public class ApiTests
+    public class PostApiTests
     {
-        private readonly FoxyPoolApiClient _apiClient;
+        private readonly PostApiClient _apiClient;
 
-        public ApiTests()
+        public PostApiTests()
         {
-            _apiClient = new FoxyPoolApiClient(EnvironmentConfig.SelectedPool);
+            _apiClient = new PostApiClient(EnvironmentConfig.PostSelectedPool);
         }
 
         [Fact]
         public async Task AccountTest()
         {
-            var account = await _apiClient.GetAccountAsync(EnvironmentConfig.LauncherId);
+            if(EnvironmentConfig.PostLauncherId.Equals(EnvironmentConfig.DEFAULT))
+            {
+                // test can not be run wiothout a valid config value
+                throw new Exception("Environment config not set.");
+            }
+
+            var account = await _apiClient.GetAccountAsync(EnvironmentConfig.PostLauncherId);
 
             Assert.NotNull(account);
 
-            Assert.Equal(account.PoolPublicKey, EnvironmentConfig.LauncherId);
+            Assert.Equal(account.PoolPublicKey, EnvironmentConfig.PostLauncherId);
         }
 
         [Fact]
