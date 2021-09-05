@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace FoxyPoolApi.Responses
 {
-    public class PayoutsResponse
+    public class PostPayoutsResponse
     {
         [JsonProperty("_id")]
         public string Id { get; set; }
@@ -15,7 +15,7 @@ namespace FoxyPoolApi.Responses
         [JsonProperty("createdAt")]
         public DateTimeOffset CreatedAt { get; set; }
 
-        public static PayoutsResponse[] FromJson(string json) => JsonConvert.DeserializeObject<PayoutsResponse[]>(json);
+        public static PostPayoutsResponse[] FromJson(string json) => JsonConvert.DeserializeObject<PostPayoutsResponse[]>(json);
     }
 
     public class Transaction

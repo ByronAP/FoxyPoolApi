@@ -3,19 +3,19 @@ using System;
 
 namespace FoxyPoolApi.Responses
 {
-    public class ConfigResponse
+    public class PostConfigResponse
     {
         [JsonProperty("poolUrl")]
         public Uri PoolUrl { get; set; }
 
         [JsonProperty("blockExplorerBlockUrlTemplate")]
-        public Uri BlockExplorerBlockUrlTemplate { get; set; }
+        public string BlockExplorerBlockUrlTemplate { get; set; }
 
         [JsonProperty("blockExplorerCoinUrlTemplate")]
-        public Uri BlockExplorerCoinUrlTemplate { get; set; }
+        public string BlockExplorerCoinUrlTemplate { get; set; }
 
         [JsonProperty("blockExplorerAddressUrlTemplate")]
-        public Uri BlockExplorerAddressUrlTemplate { get; set; }
+        public string BlockExplorerAddressUrlTemplate { get; set; }
 
         [JsonProperty("blockRewardDistributionDelay")]
         public uint BlockRewardDistributionDelay { get; set; }
@@ -59,6 +59,6 @@ namespace FoxyPoolApi.Responses
         [JsonProperty("farmingUrl")]
         public Uri FarmingUrl { get; set; }
 
-        public static ConfigResponse FromJson(string json) => JsonConvert.DeserializeObject<ConfigResponse>(json);
+        public static PostConfigResponse FromJson(string json) => JsonConvert.DeserializeObject<PostConfigResponse>(json);
     }
 }

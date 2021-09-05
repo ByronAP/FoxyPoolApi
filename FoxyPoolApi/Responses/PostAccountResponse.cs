@@ -3,7 +3,7 @@ using System;
 
 namespace FoxyPoolApi.Responses
 {
-    public class AccountResponse
+    public class PostAccountResponse
     {
         [JsonProperty("difficulty")]
         public uint Difficulty { get; set; }
@@ -38,6 +38,6 @@ namespace FoxyPoolApi.Responses
         [JsonProperty("minimumPayout")]
         public decimal MinimumPayout { get; set; } = 0.01m;
 
-        public static AccountResponse FromJson(string json) => JsonConvert.DeserializeObject<AccountResponse>(json);
+        public static PostAccountResponse FromJson(string json) => JsonConvert.DeserializeObject<PostAccountResponse>(json);
     }
 }

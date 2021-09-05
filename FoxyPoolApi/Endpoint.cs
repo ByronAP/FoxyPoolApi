@@ -8,6 +8,8 @@
         Payouts,
         Pool,
         Rates,
-        Rewards
+        Rewards,
+        Round,
+        Live
     }
 }

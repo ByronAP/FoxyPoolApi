@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace FoxyPoolApi.Responses
 {
-    public class AccountsResponse
+    public class PostAccountsResponse
     {
         [JsonProperty("topAccounts")]
         public List<TopAccount> TopAccounts { get; set; }
@@ -14,7 +14,7 @@ namespace FoxyPoolApi.Responses
         [JsonProperty("ecSum")]
         public decimal EcSum { get; set; }
 
-        public static AccountsResponse FromJson(string json) => JsonConvert.DeserializeObject<AccountsResponse>(json);
+        public static PostAccountsResponse FromJson(string json) => JsonConvert.DeserializeObject<PostAccountsResponse>(json);
     }
 
     public class TopAccount

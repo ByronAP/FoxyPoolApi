@@ -9,18 +9,18 @@ using System.Threading.Tasks;
 
 namespace FoxyPoolApi
 {
-    public class FoxyPoolApiClient : IDisposable
+    public class PostApiClient : IDisposable
     {
-        public Pools Pool { get; }
+        public PostPool Pool { get; }
         public bool IgnoreCertErrors { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         private readonly RestClient _restClient;
         private readonly IMemoryCache _memCache;
-        private readonly ILogger<FoxyPoolApiClient>? _logger;
+        private readonly ILogger<PostApiClient>? _logger;
         private bool _disposedValue;
 
 
-        public FoxyPoolApiClient(Pools pool, ILogger<FoxyPoolApiClient> logger)
+        public PostApiClient(PostPool pool, ILogger<PostApiClient> logger)
         {
             Pool = pool;
             _logger = logger;
@@ -29,10 +29,10 @@ namespace FoxyPoolApi
 
             _restClient = BuildNewRestClient();
 
-            _logger.LogDebug("Created new FoxyPoolApi instance");
+            _logger.LogDebug("Created new FoxyPool POST API instance");
         }
 
-        public FoxyPoolApiClient(Pools pool)
+        public PostApiClient(PostPool pool)
         {
             Pool = pool;
             _logger = null;
@@ -41,7 +41,7 @@ namespace FoxyPoolApi
             _restClient = BuildNewRestClient();
 
 #if DEBUG
-            Console.WriteLine($"{DateTime.UtcNow}: Created new FoxyPoolApi instance.");
+            Console.WriteLine($"{DateTime.UtcNow}: Created new FoxyPool POST API instance.");
 #endif
         }
 
@@ -57,42 +57,42 @@ namespace FoxyPoolApi
 
         private RestClient BuildNewRestClient()
         {
-            return new RestClient($"{Constants.PoolBaseUrl}/{Constants.PoolApiVersion}/{Pool.ToString().Replace("_", "-").ToLowerInvariant()}");
+            return new RestClient($"{Constants.PostPoolBaseUrl}/{Constants.PostPoolApiVersion}/{Pool.ToString().Replace("_", "-").ToLowerInvariant()}");
         }
 
-        public Task<ConfigResponse> GetConfigAsync()
+        public Task<PostConfigResponse> GetConfigAsync()
         {
-            return GetTAsync<ConfigResponse>(Endpoint.Config, Constants.ConfigResponseCacheSeconds);
+            return GetTAsync<PostConfigResponse>(Endpoint.Config, Constants.PostConfigResponseCacheSeconds);
         }
 
-        public Task<PoolResponse> GetPoolAsync()
+        public Task<PostPoolResponse> GetPoolAsync()
         {
-            return GetTAsync<PoolResponse>(Endpoint.Pool, Constants.PoolResponseCacheSeconds);
+            return GetTAsync<PostPoolResponse>(Endpoint.Pool, Constants.PostPoolResponseCacheSeconds);
         }
 
-        public Task<AccountsResponse> GetAccountsAsync()
+        public Task<PostAccountsResponse> GetAccountsAsync()
         {
-            return GetTAsync<AccountsResponse>(Endpoint.Accounts, Constants.AccountsResponseCacheSeconds);
+            return GetTAsync<PostAccountsResponse>(Endpoint.Accounts, Constants.PostAccountsResponseCacheSeconds);
         }
 
-        public Task<RewardsResponse> GetRewardsAsync()
+        public Task<PostRewardsResponse> GetRewardsAsync()
         {
-            return GetTAsync<RewardsResponse>(Endpoint.Rewards, Constants.RewardsResponseCacheSeconds);
+            return GetTAsync<PostRewardsResponse>(Endpoint.Rewards, Constants.PostRewardsResponseCacheSeconds);
         }
 
-        public Task<List<PayoutsResponse>> GetPayoutsAsync()
+        public Task<List<PostPayoutsResponse>> GetPayoutsAsync()
         {
-            return GetTAsync<List<PayoutsResponse>>(Endpoint.Payouts, Constants.PayoutsResponseCacheSeconds);
+            return GetTAsync<List<PostPayoutsResponse>>(Endpoint.Payouts, Constants.PostPayoutsResponseCacheSeconds);
         }
 
-        public Task<RatesResponse> GetRatesAsync()
+        public Task<PostRatesResponse> GetRatesAsync()
         {
-            return GetTAsync<RatesResponse>(Endpoint.Rates, Constants.RatesResponseCacheSeconds);
+            return GetTAsync<PostRatesResponse>(Endpoint.Rates, Constants.PostRatesResponseCacheSeconds);
         }
 
-        public Task<AccountResponse> GetAccountAsync(string launcherId)
+        public Task<PostAccountResponse> GetAccountAsync(string launcherId)
         {
-            return GetTAsync<AccountResponse>(Endpoint.Account, Constants.AccountResponseCacheSeconds, launcherId);
+            return GetTAsync<PostAccountResponse>(Endpoint.Account, Constants.PostAccountResponseCacheSeconds, launcherId);
         }
 
         private async Task<T> GetTAsync<T>(Endpoint endpoint, uint cacheSeconds, params string[] segments)
