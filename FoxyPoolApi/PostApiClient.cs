@@ -12,7 +12,6 @@ namespace FoxyPoolApi
     public class PostApiClient : IDisposable
     {
         public PostPool Pool { get; }
-        public bool IgnoreCertErrors { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         private readonly RestClient _restClient;
         private readonly IMemoryCache _memCache;
