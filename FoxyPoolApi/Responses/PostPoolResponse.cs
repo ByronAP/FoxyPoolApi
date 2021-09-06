@@ -16,21 +16,19 @@ namespace FoxyPoolApi.Responses
         public DateTimeOffset ReceivedAt { get; set; }
 
         [JsonProperty("networkSpaceInTiB")]
-        public string NetworkSpaceInTiB { get; set; }
+        public string? NetworkSpaceInTiB { get; set; }
 
         [JsonProperty("balance")]
-        public string Balance { get; set; }
+        public string? Balance { get; set; }
 
         [JsonProperty("events")]
-        public List<PoolEvent> Events { get; set; }
-
-        public static PostPoolResponse FromJson(string json) => JsonConvert.DeserializeObject<PostPoolResponse>(json);
+        public List<PoolEvent>? Events { get; set; }
     }
 
     public class PoolEvent
     {
         [JsonProperty("type")]
-        public string Type { get; set; }
+        public string? Type { get; set; }
 
         [JsonProperty("startedAt")]
         public DateTimeOffset StartedAt { get; set; }
@@ -39,10 +37,10 @@ namespace FoxyPoolApi.Responses
         public DateTimeOffset EndedAt { get; set; }
 
         [JsonProperty("state")]
-        public string State { get; set; }
+        public string? State { get; set; }
 
         [JsonProperty("payload")]
-        public Payload Payload { get; set; }
+        public Payload? Payload { get; set; }
     }
 
     public class Payload

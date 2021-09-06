@@ -12,13 +12,13 @@ namespace FoxyPoolApi.Responses
         public decimal BindingCost { get; set; }
 
         [JsonProperty("bindToFunction")]
-        public string BindToFunction { get; set; }
+        public string? BindToFunction { get; set; }
 
         [JsonProperty("blockExplorerBlockUrlTemplate")]
-        public string BlockExplorerBlockUrlTemplate { get; set; }
+        public string? BlockExplorerBlockUrlTemplate { get; set; }
 
         [JsonProperty("blockExplorerTxUrlTemplate")]
-        public string BlockExplorerTxUrlTemplate { get; set; }
+        public string? BlockExplorerTxUrlTemplate { get; set; }
 
         [JsonProperty("blockRewardDistributionDelay")]
         public uint BlockRewardDistributionDelay { get; set; }
@@ -27,13 +27,13 @@ namespace FoxyPoolApi.Responses
         public uint BlocksPerDay { get; set; }
 
         [JsonProperty("defaultDistributionRatio")]
-        public string DefaultDistributionRatio { get; set; }
+        public string? DefaultDistributionRatio { get; set; }
 
         [JsonProperty("disablePledgeInstructions")]
         public bool DisablePledgeInstructions { get; set; }
 
         [JsonProperty("faucetInput")]
-        public string FaucetInput { get; set; }
+        public string? FaucetInput { get; set; }
 
         [JsonProperty("freeBindings")]
         public bool FreeBindings { get; set; }
@@ -51,35 +51,35 @@ namespace FoxyPoolApi.Responses
         public decimal MinimumPayout { get; set; }
 
         [JsonProperty("miningUrl")]
-        public string MiningUrl { get; set; }
+        public string? MiningUrl { get; set; }
 
         //TODO: notices type
         [JsonProperty("notices")]
-        public List<object> Notices { get; set; }
+        public List<object>? Notices { get; set; }
 
         [JsonProperty("onDemandPayoutFee")]
         public decimal OnDemandPayoutFee { get; set; }
 
         [JsonProperty("pledgeFunction")]
-        public string PledgeFunction { get; set; }
+        public string? PledgeFunction { get; set; }
 
         [JsonProperty("pledgePrecision")]
         public uint PledgePrecision { get; set; }
 
         [JsonProperty("pledgeUnit")]
-        public string PledgeUnit { get; set; }
+        public string? PledgeUnit { get; set; }
 
         [JsonProperty("poolAddress")]
-        public string PoolAddress { get; set; }
+        public string? PoolAddress { get; set; }
 
         [JsonProperty("poolName")]
-        public string PoolName { get; set; }
+        public string? PoolName { get; set; }
 
         [JsonProperty("poolShare")]
         public uint PoolShare { get; set; }
 
         [JsonProperty("poolUrl")]
-        public string PoolUrl { get; set; }
+        public string? PoolUrl { get; set; }
 
         [JsonProperty("requiresFullPledge")]
         public bool RequiresFullPledge { get; set; }
@@ -100,17 +100,15 @@ namespace FoxyPoolApi.Responses
         public bool SupportsPledge { get; set; }
 
         [JsonProperty("symbol")]
-        public string Symbol { get; set; }
+        public string? Symbol { get; set; }
 
         [JsonProperty("targetDL")]
         public ulong TargetDl { get; set; }
 
         [JsonProperty("version")]
-        public string Version { get; set; }
+        public string? Version { get; set; }
 
         [JsonProperty("isTestnet")]
         public bool IsTestnet { get; set; }
-
-        public static PocConfigResponse FromJson(string json) => JsonConvert.DeserializeObject<PocConfigResponse>(json);
     }
 }

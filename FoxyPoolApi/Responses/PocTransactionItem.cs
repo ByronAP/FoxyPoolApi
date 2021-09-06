@@ -6,12 +6,12 @@ namespace FoxyPoolApi.Responses
     public class PocTransactionItem
     {
         [JsonProperty("_id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         [JsonProperty("txId")]
-        public string TxId { get; set; }
+        public string? TxId { get; set; }
 
         [JsonProperty("payoutAmounts")]
-        public Dictionary<string, string> PayoutAmounts { get; set; }
+        public Dictionary<string, string>? PayoutAmounts { get; set; }
     }
 }

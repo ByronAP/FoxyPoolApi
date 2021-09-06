@@ -5,16 +5,16 @@ namespace FoxyPoolApi.Responses
     public class PocMinerItem
     {
         [JsonProperty("_id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [JsonProperty("software")]
-        public string Software { get; set; }
+        public string? Software { get; set; }
 
         [JsonProperty("connection")]
-        public string Connection { get; set; }
+        public string? Connection { get; set; }
 
         [JsonProperty("reportedCapacity")]
         public uint ReportedCapacity { get; set; } = 0;

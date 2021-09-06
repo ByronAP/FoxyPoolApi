@@ -8,13 +8,13 @@ namespace FoxyPoolApi.Responses
         public ulong Height { get; set; }
 
         [JsonProperty("baseTarget")]
-        public string BaseTarget { get; set; }
+        public string? BaseTarget { get; set; }
 
         [JsonProperty("netDiff")]
-        public string NetDiff { get; set; }
+        public string? NetDiff { get; set; }
 
         [JsonProperty("hash")]
-        public string Hash { get; set; }
+        public string? Hash { get; set; }
 
         [JsonProperty("reward")]
         public decimal Reward { get; set; }

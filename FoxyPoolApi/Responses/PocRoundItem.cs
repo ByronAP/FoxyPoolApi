@@ -11,7 +11,7 @@ namespace FoxyPoolApi.Responses
         public uint BaseTarget { get; set; }
 
         [JsonProperty("generationSignature")]
-        public string GenerationSignature { get; set; }
+        public string? GenerationSignature { get; set; }
 
         [JsonProperty("targetDeadline")]
         public ulong TargetDeadline { get; set; }
