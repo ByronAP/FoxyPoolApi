@@ -25,7 +25,7 @@ Contains a build in cache to reduce redundant calls.
 * PocApiClient (BHD, SIGNA)
 * PocSocketIOApiClient (BHD, SIGNA)
 
-SEE DEMO PROJECT
+[SEE DEMO PROJECT](https://github.com/ByronAP/FoxyPoolApi/blob/main/FoxyPoolApiDemo/Program.cs)
 
 
 ## Contributing
