@@ -18,10 +18,10 @@ namespace FoxyPoolApi.Responses
         public uint AccountCount { get; set; }
 
         [JsonProperty("accounts")]
-        public List<PocAccountItem> Accounts { get; set; }
+        public List<PocAccountItem>? Accounts { get; set; }
 
         [JsonProperty("payouts")]
-        public List<PocPayoutItem> Payouts { get; set; }
+        public List<PocPayoutItem>? Payouts { get; set; }
 
         [JsonProperty("pledge")]
         public decimal Pledge { get; set; }
@@ -33,27 +33,25 @@ namespace FoxyPoolApi.Responses
         public decimal AvailableMiningBalance { get; set; }
 
         [JsonProperty("roundsWon")]
-        public List<PocRoundsWonItem> RoundsWon { get; set; }
+        public List<PocRoundsWonItem>? RoundsWon { get; set; }
 
         [JsonProperty("totalCapacity")]
         public ulong TotalCapacity { get; set; }
 
         [JsonProperty("distributionRatios")]
-        public List<string> DistributionRatios { get; set; }
+        public List<string>? DistributionRatios { get; set; }
 
         [JsonProperty("rate")]
         public decimal Rate { get; set; }
 
         // TODO: event type
         [JsonProperty("events")]
-        public List<object> Events { get; set; }
+        public List<object>? Events { get; set; }
 
         [JsonProperty("pledgeSum")]
-        public string PledgeSum { get; set; }
+        public string? PledgeSum { get; set; }
 
         [JsonProperty("dailyRewardPerPiB")]
         public decimal DailyRewardPerPiB { get; set; }
-
-        public static PocPoolResponse FromJson(string json) => JsonConvert.DeserializeObject<PocPoolResponse>(json);
     }
 }

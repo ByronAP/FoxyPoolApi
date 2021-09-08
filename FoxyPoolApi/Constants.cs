@@ -26,5 +26,9 @@
         public const uint PocPoolResponseCacheSeconds = 30;
         public const uint PocRoundResponseCacheSeconds = 8;
         public const uint PocLiveResponseCacheSeconds = 2;
+
+        // POC socket.io
+        public const string PocSocketIOWebUiUrl = "https://api.foxypool.io/web-ui";
+        public const string PocSocketIOMiningUrl = "http://miner.foxypool.io/mining";
     }
 }
