@@ -58,6 +58,26 @@ namespace FoxyPoolApi
             return GetTAsync<PoolStatusResponse>(StatusEndpoint.Status, 60);
         }
 
+        public Task<PoolSummaryResponse> GetSummaryAsync()
+        {
+            return GetTAsync<PoolSummaryResponse>(StatusEndpoint.Summary, 60);
+        }
+
+        public Task<PoolComponentsResponse> GetComponentsAsync()
+        {
+            return GetTAsync<PoolComponentsResponse>(StatusEndpoint.Components, 60);
+        }
+
+        public Task<PoolIncidentsResponse> GetIncidentsAsync()
+        {
+            return GetTAsync<PoolIncidentsResponse>(StatusEndpoint.Incidents, 60);
+        }
+
+        public Task<PoolIncidentsResponse> GetIncidentsUnresolvedAsync()
+        {
+            return GetTAsync<PoolIncidentsResponse>(StatusEndpoint.Incidents_Unresolved, 60);
+        }
+
         private async Task<T> GetTAsync<T>(StatusEndpoint endpoint, uint cacheSeconds, params string[] segments)
         {
             var cacheKey = $"status-{endpoint}";
@@ -96,7 +116,7 @@ namespace FoxyPoolApi
 
         private Task<T> GetResponseAsync<T>(StatusEndpoint endpoint, params string[] segments)
         {
-            var url = endpoint.ToString().ToLowerInvariant();
+            var url = endpoint.ToString().ToLowerInvariant().Replace('_', '/');
             switch (segments.Length)
             {
                 case 0:
