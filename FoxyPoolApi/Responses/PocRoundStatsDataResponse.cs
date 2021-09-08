@@ -15,10 +15,10 @@ namespace FoxyPoolApi.Responses
         public ulong? BestDeadline { get; set; }
 
         [JsonProperty("bestDeadlineMiner")]
-        public ulong? BestDeadlineMiner { get; set; }
+        public string? BestDeadlineMiner { get; set; }
 
         [JsonProperty("bestSubmission")]
-        public ulong? BestSubmission { get; set; }
+        public PocBestSubmissionItem? BestSubmission { get; set; }
 
         public static PocRoundStatsDataResponse FromJson(string json) => JsonConvert.DeserializeObject<PocRoundStatsDataResponse>(json);
     }

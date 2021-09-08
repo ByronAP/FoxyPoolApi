@@ -6,6 +6,7 @@ namespace FoxyPoolApi
     public delegate void SocketIO_Connected();
     public delegate void SocketIO_Disconnected(string reason);
     public delegate void SocketIO_Error(string reason);
-    public delegate void SocketIO_Stats_Live(string pool, PocLiveStatsDataResponse liveStatsDataResponse);
-    public delegate void SocketIO_Stats_Round(string pool, PocRoundStatsDataResponse roundStatsDataResponse);
+    public delegate void SocketIO_Stats_Live(PocPool pool, PocLiveStatsDataResponse liveStatsDataResponse);
+    public delegate void SocketIO_Stats_Round(PocPool pool, PocRoundStatsDataResponse roundStatsDataResponse);
+    public delegate void SocketIO_Mining_Info(PocPool pool, PocMiningInfoResponse miningInfoResponse);
 }

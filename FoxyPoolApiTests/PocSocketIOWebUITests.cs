@@ -31,7 +31,7 @@ namespace FoxyPoolApiTests
 
             await _apiWebUIClient.ConnectAsync();
 
-            var checkConnectTask = CheckConnectAsync(_apiWebUIClient);
+            var checkConnectTask = WaitConnectAsync(_apiWebUIClient);
             var timeoutTask = Task.Delay(TimeSpan.FromSeconds(30));
             var taskIndex = Task.WaitAny(checkConnectTask, timeoutTask);
 
@@ -51,7 +51,7 @@ namespace FoxyPoolApiTests
 
             await _apiMiningClient.ConnectAsync();
 
-            var checkConnectTask = CheckConnectAsync(_apiMiningClient);
+            var checkConnectTask = WaitConnectAsync(_apiMiningClient);
             var timeoutTask = Task.Delay(TimeSpan.FromSeconds(30));
             var taskIndex = Task.WaitAny(checkConnectTask, timeoutTask);
 
@@ -60,7 +60,7 @@ namespace FoxyPoolApiTests
             // TODO: check connect and disconnect events
         }
 
-        internal async Task CheckConnectAsync(PocSocketIOApiClient client)
+        internal async Task WaitConnectAsync(PocSocketIOApiClient client)
         {
             do
             {
@@ -71,11 +71,16 @@ namespace FoxyPoolApiTests
         [Fact]
         public async Task StatsLiveTest()
         {
+            if (!_apiMiningClient.IsConnected)
+            {
+                await _apiMiningClient.DisconnectAsync();
+            }
+
             if (!_apiWebUIClient.IsConnected)
             {
                 await _apiWebUIClient.ConnectAsync();
 
-                var checkConnectTask = CheckConnectAsync(_apiWebUIClient);
+                var checkConnectTask = WaitConnectAsync(_apiWebUIClient);
                 var timeoutTask = Task.Delay(TimeSpan.FromSeconds(30));
                 var taskIndex = Task.WaitAny(checkConnectTask, timeoutTask);
 
@@ -106,11 +111,16 @@ namespace FoxyPoolApiTests
         [Fact]
         public async Task StatsRoundTest()
         {
+            if (!_apiMiningClient.IsConnected)
+            {
+                await _apiMiningClient.DisconnectAsync();
+            }
+
             if (!_apiWebUIClient.IsConnected)
             {
                 await _apiWebUIClient.ConnectAsync();
 
-                var checkConnectTask = CheckConnectAsync(_apiWebUIClient);
+                var checkConnectTask = WaitConnectAsync(_apiWebUIClient);
                 var timeoutTask = Task.Delay(TimeSpan.FromSeconds(30));
                 var taskIndex = Task.WaitAny(checkConnectTask, timeoutTask);
 
@@ -132,7 +142,47 @@ namespace FoxyPoolApiTests
             do
             {
                 await Task.Delay(TimeSpan.FromSeconds(1));
-            } while (!responseReceived && stopwatch.Elapsed.TotalSeconds < 22);
+            } while (!responseReceived && stopwatch.Elapsed.TotalSeconds < 120);
+            stopwatch.Stop();
+
+            Assert.True(responseReceived);
+        }
+
+        [Fact]
+        public async Task MiningInfoTest()
+        {
+            if(!_apiWebUIClient.IsConnected)
+            {
+                await _apiWebUIClient.DisconnectAsync();
+            }
+
+            if (!_apiMiningClient.IsConnected)
+            {
+                await _apiMiningClient.ConnectAsync();
+
+                var checkConnectTask = WaitConnectAsync(_apiMiningClient);
+                var timeoutTask = Task.Delay(TimeSpan.FromSeconds(30));
+                var taskIndex = Task.WaitAny(checkConnectTask, timeoutTask);
+
+                Assert.Equal(0, taskIndex);
+            }
+
+            bool responseReceived = false;
+
+            _apiMiningClient.On_SocketIO_Mining_Info += (pool, data) =>
+            {
+                Assert.NotNull(data);
+                responseReceived = true;
+            };
+
+            await _apiMiningClient.SubscribeAsync(PocPool.BHD, PocPool.SIGNA);
+
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+            do
+            {
+                await Task.Delay(TimeSpan.FromSeconds(1));
+            } while (!responseReceived && stopwatch.Elapsed.TotalSeconds < 300);
             stopwatch.Stop();
 
             Assert.True(responseReceived);
@@ -141,11 +191,16 @@ namespace FoxyPoolApiTests
         [Fact]
         public async Task GetMiningInfoTest()
         {
+            if (!_apiWebUIClient.IsConnected)
+            {
+                await _apiWebUIClient.DisconnectAsync();
+            }
+
             if (!_apiMiningClient.IsConnected)
             {
                 await _apiMiningClient.ConnectAsync();
 
-                var checkConnectTask = CheckConnectAsync(_apiMiningClient);
+                var checkConnectTask = WaitConnectAsync(_apiMiningClient);
                 var timeoutTask = Task.Delay(TimeSpan.FromSeconds(30));
                 var taskIndex = Task.WaitAny(checkConnectTask, timeoutTask);
 

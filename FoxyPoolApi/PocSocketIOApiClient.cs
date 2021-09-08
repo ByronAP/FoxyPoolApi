@@ -25,6 +25,7 @@ namespace FoxyPoolApi
 
         public event SocketIO_Stats_Live? On_SocketIO_Stats_Live;
         public event SocketIO_Stats_Round? On_SocketIO_Stats_Round;
+        public event SocketIO_Mining_Info? On_SocketIO_Mining_Info;
 
         public PocSocketIOApiClient(SocketIOApi socketIOApi)
         {
@@ -87,23 +88,32 @@ namespace FoxyPoolApi
             });
 #endif
             _socketIOClient.On("stats/live", (data) => {SocketIOClient_On_Stats_Live(data);});
-            _socketIOClient.On("stats/round", (data) => { SocketIOClient_On_Stats_Round(data); });
+            _socketIOClient.On("stats/round", (data) => {SocketIOClient_On_Stats_Round(data);});
+            _socketIOClient.On("miningInfo", (data) => {SocketIOClient_On_Mining_Info(data); });
         }
 
         private void SocketIOClient_On_Stats_Live(SocketIOResponse response)
         {
-            var pool = response.GetValue(0).GetRawText();
+            var pool = response.GetValue<string>(0);
             var data = response.GetValue(1).GetRawText();
             var result = PocLiveStatsDataResponse.FromJson(data);
-            On_SocketIO_Stats_Live?.Invoke(pool, result);
+            On_SocketIO_Stats_Live?.Invoke((PocPool)Enum.Parse(typeof(PocPool), pool, true), result);
         }
 
         private void SocketIOClient_On_Stats_Round(SocketIOResponse response)
         {
-            var pool = response.GetValue(0).GetRawText();
+            var pool = response.GetValue<string>(0);
             var data = response.GetValue(1).GetRawText();
             var result = PocRoundStatsDataResponse.FromJson(data);
-            On_SocketIO_Stats_Round?.Invoke(pool, result);
+            On_SocketIO_Stats_Round?.Invoke((PocPool)Enum.Parse(typeof(PocPool), pool, true), result);
+        }
+
+        private void SocketIOClient_On_Mining_Info(SocketIOResponse response)
+        {
+            var pool = response.GetValue<string>(0);
+            var data = response.GetValue(1).GetRawText();
+            var result = PocMiningInfoResponse.FromJson(data);
+            On_SocketIO_Mining_Info?.Invoke((PocPool)Enum.Parse(typeof(PocPool), pool, true), result);
         }
 
         private void SocketIOClient_OnError(object sender, string e)
@@ -144,6 +154,16 @@ namespace FoxyPoolApi
             State = SocketIOState.Connecting;
 
             return _socketIOClient.ConnectAsync();
+        }
+
+        public Task DisconnectAsync()
+        {
+            if(_socketIOClient.Connected)
+            {
+                return _socketIOClient.DisconnectAsync();
+            }
+
+            return Task.CompletedTask;
         }
 
         public Task SubscribeAsync(params PocPool[] pocPools)

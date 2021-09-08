@@ -16,6 +16,9 @@ namespace FoxyPoolApi.Responses
         [JsonProperty("targetDeadline")]
         public ulong TargetDeadline { get; set; }
 
+        [JsonProperty("averageCommitment", NullValueHandling = NullValueHandling.Ignore)]
+        public string? AverageCommitment { get; set; }
+
         public static PocMiningInfoResponse FromJson(string json) => JsonConvert.DeserializeObject<PocMiningInfoResponse>(json);
     }
 }
