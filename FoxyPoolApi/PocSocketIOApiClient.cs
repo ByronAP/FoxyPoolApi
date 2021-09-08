@@ -1,7 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
 using SocketIOClient;
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Linq;
+using FoxyPoolApi.Responses;
 
 namespace FoxyPoolApi
 {
@@ -19,6 +22,9 @@ namespace FoxyPoolApi
         public event SocketIO_Connected? On_SocketIO_Connected;
         public event SocketIO_Disconnected? On_SocketIO_Disconnected;
         public event SocketIO_Error? On_SocketIO_Error;
+
+        public event SocketIO_Stats_Live? On_SocketIO_Stats_Live;
+        public event SocketIO_Stats_Round? On_SocketIO_Stats_Round;
 
         public PocSocketIOApiClient(SocketIOApi socketIOApi)
         {
@@ -67,13 +73,37 @@ namespace FoxyPoolApi
             _socketIOClient.OnConnected += SocketIOClient_OnConnected;
             _socketIOClient.OnDisconnected += SocketIOClient_OnDisconnected;
             _socketIOClient.OnError += SocketIOClient_OnError;
-
-            _socketIOClient.OnAny(SocketIOClient_OnAny);
+#if DEBUG
+            _socketIOClient.OnAny((eventName, data) => 
+            { 
+                if(_logger == null)
+                {
+                    Console.WriteLine(eventName, data);
+                }
+                else
+                {
+                    _logger.LogDebug("OnAny recevied {EnentName} {Data}", eventName, data);
+                }
+            });
+#endif
+            _socketIOClient.On("stats/live", (data) => {SocketIOClient_On_Stats_Live(data);});
+            _socketIOClient.On("stats/round", (data) => { SocketIOClient_On_Stats_Round(data); });
         }
 
-        private void SocketIOClient_OnAny(string eventName, SocketIOResponse response)
+        private void SocketIOClient_On_Stats_Live(SocketIOResponse response)
         {
-            Console.WriteLine(eventName, response);
+            var pool = response.GetValue(0).GetRawText();
+            var data = response.GetValue(1).GetRawText();
+            var result = PocLiveStatsDataResponse.FromJson(data);
+            On_SocketIO_Stats_Live?.Invoke(pool, result);
+        }
+
+        private void SocketIOClient_On_Stats_Round(SocketIOResponse response)
+        {
+            var pool = response.GetValue(0).GetRawText();
+            var data = response.GetValue(1).GetRawText();
+            var result = PocRoundStatsDataResponse.FromJson(data);
+            On_SocketIO_Stats_Round?.Invoke(pool, result);
         }
 
         private void SocketIOClient_OnError(object sender, string e)
@@ -121,22 +151,39 @@ namespace FoxyPoolApi
             if(!_socketIOClient.Connected)
                 throw new Exception("Socket not connected.");
 
-            return _socketIOClient.EmitAsync("subscribe", pocPools);
+            var pools = pocPools.Select(p => p.ToString().ToLowerInvariant());
+
+            return _socketIOClient.EmitAsync("subscribe", pools);
         }
 
-        public async Task<object> EmitGetMiningInfo(PocPool pocPool)
+        public async Task<PocMiningInfoResponse> GetMiningInfoAsync(PocPool pocPool)
         {
             if (!_socketIOClient.Connected)
                 throw new Exception("Socket not connected.");
 
-            object result = new object();
+            PocMiningInfoResponse? result = null;
+
+            var pool = pocPool.ToString().ToLowerInvariant();
 
             await _socketIOClient.EmitAsync("getMiningInfo",
                 response =>
                 {
-                    result = response.GetValue();
+                    var json = response.GetValue().GetRawText();
+                    result = PocMiningInfoResponse.FromJson(json);
                 },
-                pocPool.ToString());
+                pool);
+
+            // TODO: this is terrible, write this properly
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+                do
+                {
+                    await Task.Delay(TimeSpan.FromSeconds(1));
+                } while (result == null && stopwatch.Elapsed.TotalSeconds < 22);
+            stopwatch.Stop();
+
+            if(result == null)
+                throw new Exception("Failed to retreive mining info.");
 
             return result;
         }
@@ -149,9 +196,9 @@ namespace FoxyPoolApi
                 {
                     if (_socketIOClient.Connected)
                     {
-                        _socketIOClient.DisconnectAsync().Wait();
+                        _socketIOClient.DisconnectAsync().Wait(TimeSpan.FromSeconds(2));
                     }
-                    _socketIOClient?.Dispose();
+                    _socketIOClient.Dispose();
                 }
 
                 _disposedValue = true;

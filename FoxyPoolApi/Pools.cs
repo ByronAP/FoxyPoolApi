@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace FoxyPoolApi
+﻿namespace FoxyPoolApi
 {
     public enum PostPool
     {

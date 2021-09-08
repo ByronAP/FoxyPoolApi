@@ -2,10 +2,10 @@
 
 namespace FoxyPoolApi.Responses
 {
-    public class PocRoundItem
+    public class PocMiningInfoResponse
     {
         [JsonProperty("height")]
-        public ulong Height { get; set; }
+        public long Height { get; set; }
 
         [JsonProperty("baseTarget")]
         public uint BaseTarget { get; set; }
@@ -16,7 +16,6 @@ namespace FoxyPoolApi.Responses
         [JsonProperty("targetDeadline")]
         public ulong TargetDeadline { get; set; }
 
-        [JsonProperty("averageCommitment", NullValueHandling = NullValueHandling.Ignore)]
-        public string? AverageCommitment { get; set; }
+        public static PocMiningInfoResponse FromJson(string json) => JsonConvert.DeserializeObject<PocMiningInfoResponse>(json);
     }
 }
