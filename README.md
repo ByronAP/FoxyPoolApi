@@ -6,49 +6,27 @@ FoxyPoolApi is a .NET library that simplifies the integration of the Foxy Pool A
 
 Foxy Pool: https://foxypool.io
 
-Api Docs: https://api-docs.foxypool.io
+POST Api Docs: https://api-docs.foxypool.io
+POC Api Docs: https://docs.foxypool.io/proof-of-capacity/foxy-pool/api/overview/
+
+Supports POC (REST, Socket.io) and POST (REST) APIs.
+Contains a build in cache to reduce redundant calls.
+
 
 ## Installation
 
-Package available [![NuGet version (SoftCircuits.Silk)](https://img.shields.io/nuget/v/FoxyPoolApi.svg?style=flat-square)](https://www.nuget.org/packages/FoxyPoolApi/)
+[![NuGet version (SoftCircuits.Silk)](https://img.shields.io/nuget/v/FoxyPoolApi.svg?style=flat-square)](https://www.nuget.org/packages/FoxyPoolApi/)
+
 
 ## Usage
 
-```c#
-using FoxyPoolApi;
-using System;
-using System.Threading.Tasks;
+#### Client Classes
+* PostApiClient (Chia, Chia OG, Flax OG)
+* PocApiClient (BHD, SIGNA)
+* PocSocketIOApiClient (BHD, SIGNA)
 
-namespace FoxyPoolApiDemo
-{
-    public class Program
-    {
-        private static async Task Main()
-        {
-            Console.WriteLine($"Creating FoxyPool POST Api Client Instance.{Environment.NewLine}");
-            using var apiClient = new PostApiClient(PostPool.Chia_OG);
+SEE DEMO PROJECT
 
-            Console.WriteLine("Requesting Pool Config.");
-            var poolConfig = await apiClient.GetConfigAsync();
-            Console.WriteLine($"Received Pool Config for {poolConfig.PoolName}.{Environment.NewLine}");
-
-            await Task.Delay(500);
-
-            Console.WriteLine("Requesting Pool Info.");
-            var poolInfo = await apiClient.GetPoolAsync();
-            Console.WriteLine($"Received Pool Info, Pool has a balance of {poolInfo.Balance}.{Environment.NewLine}");
-
-            await Task.Delay(500);
-
-            Console.WriteLine("Requesting Accounts Info.");
-            var poolAccounts = await apiClient.GetAccountsAsync();
-            Console.WriteLine($"Received Accounts, Pool has {poolAccounts.AccountsWithShares} active accounts.{Environment.NewLine}");
-
-            await Task.Delay(500);
-        }
-    }
-}
-```
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
@@ -57,4 +35,4 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
 
-Not affiliated with Foxy Pool in any way, Logo used with permission
+Not affiliated with Foxy Pool, Logo used with permission
