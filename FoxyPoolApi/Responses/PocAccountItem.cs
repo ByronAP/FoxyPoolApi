@@ -7,7 +7,7 @@ namespace FoxyPoolApi.Responses
     public class PocAccountItem
     {
         [JsonProperty("pending")]
-        public string Pending { get; set; }
+        public string? Pending { get; set; }
 
         [JsonProperty("ec")]
         public decimal Ec { get; set; }
@@ -16,7 +16,7 @@ namespace FoxyPoolApi.Responses
         public decimal EcShare { get; set; }
 
         [JsonProperty("payoutAddress")]
-        public string PayoutAddress { get; set; }
+        public string? PayoutAddress { get; set; }
 
         [JsonProperty("createdAt")]
         public DateTimeOffset CreatedAt { get; set; }
@@ -25,25 +25,25 @@ namespace FoxyPoolApi.Responses
         public DateTimeOffset UpdatedAt { get; set; }
 
         [JsonProperty("distributionRatio")]
-        public string DistributionRatio { get; set; }
+        public string? DistributionRatio { get; set; }
 
         [JsonProperty("miner")]
-        public List<PocMinerItem> Miner { get; set; }
+        public List<PocMinerItem>? Miner { get; set; }
 
         [JsonProperty("plotter")]
-        public List<PocPlotterItem> Plotter { get; set; }
+        public List<PocPlotterItem>? Plotter { get; set; }
 
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [JsonProperty("deadlines")]
         public ulong Deadlines { get; set; }
 
         [JsonProperty("software", NullValueHandling = NullValueHandling.Ignore)]
-        public string Software { get; set; }
+        public string? Software { get; set; }
 
         [JsonProperty("connection", NullValueHandling = NullValueHandling.Ignore)]
-        public string Connection { get; set; }
+        public string? Connection { get; set; }
 
         [JsonProperty("lastSubmissionHeight", NullValueHandling = NullValueHandling.Ignore)]
         public ulong LastSubmissionHeight { get; set; } = 0;
@@ -55,7 +55,7 @@ namespace FoxyPoolApi.Responses
         public ulong ReportedCapacity { get; set; }
 
         [JsonProperty("pledge", NullValueHandling = NullValueHandling.Ignore)]
-        public string Pledge { get; set; }
+        public string? Pledge { get; set; }
 
         [JsonProperty("pledgeShare", NullValueHandling = NullValueHandling.Ignore)]
         public decimal PledgeShare { get; set; } = 0m;

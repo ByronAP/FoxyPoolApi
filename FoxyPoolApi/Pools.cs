@@ -2,14 +2,14 @@
 {
     public enum PostPool
     {
-        Chia,
-        Chia_OG,
-        Flax_OG
+        Chia = 1,
+        Chia_OG = 2,
+        Flax_OG = 4
     }
 
     public enum PocPool
     {
-        BHD,
-        SIGNA
+        BHD = 1,
+        SIGNA = 2
     }
 }
