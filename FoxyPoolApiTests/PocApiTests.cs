@@ -14,7 +14,7 @@ namespace FoxyPoolApiTests
         }
 
         [Fact]
-        public async Task ConfigTestTest()
+        public async Task ConfigTest()
         {
             var config = await _apiClient.GetConfigAsync();
 
