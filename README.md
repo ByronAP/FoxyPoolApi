@@ -4,10 +4,9 @@
 
 FoxyPoolApi is a .NET library that simplifies the integration of the Foxy Pool API.
 
-Foxy Pool: https://foxypool.io
-
-POST Api Docs: https://api-docs.foxypool.io
-POC Api Docs: https://docs.foxypool.io/proof-of-capacity/foxy-pool/api/overview
+Foxy Pool: https://foxypool.io<br/>
+POST Api Docs: https://api-docs.foxypool.io<br/>
+POC Api Docs: https://docs.foxypool.io/proof-of-capacity/foxy-pool/api/overview<br/>
 StatusPage: https://foxypool.statuspage.io
 
 Supports POC (REST, Socket.io), POST (REST), and Statuspage (REST) APIs.
