@@ -78,6 +78,21 @@ namespace FoxyPoolApi
             return GetTAsync<PoolIncidentsResponse>(StatusEndpoint.Incidents_Unresolved, 60);
         }
 
+        public Task<PoolScheduledMaintenanceResponse> GetScheduledMaintenancesAsync()
+        {
+            return GetTAsync<PoolScheduledMaintenanceResponse>(StatusEndpoint.Scheduled_Maintenances, 60);
+        }
+
+        public Task<PoolScheduledMaintenanceResponse> GetScheduledMaintenancesUpcomingAsync()
+        {
+            return GetTAsync<PoolScheduledMaintenanceResponse>(StatusEndpoint.Scheduled_Maintenances_Upcoming, 60);
+        }
+
+        public Task<PoolScheduledMaintenanceResponse> GetScheduledMaintenancesActiveAsync()
+        {
+            return GetTAsync<PoolScheduledMaintenanceResponse>(StatusEndpoint.Scheduled_Maintenances_Active, 60);
+        }
+
         private async Task<T> GetTAsync<T>(StatusEndpoint endpoint, uint cacheSeconds, params string[] segments)
         {
             var cacheKey = $"status-{endpoint}";
@@ -116,7 +131,23 @@ namespace FoxyPoolApi
 
         private Task<T> GetResponseAsync<T>(StatusEndpoint endpoint, params string[] segments)
         {
-            var url = endpoint.ToString().ToLowerInvariant().Replace('_', '/');
+            var url = endpoint.ToString().ToLowerInvariant();
+            switch (endpoint)
+            {
+                case StatusEndpoint.Incidents_Unresolved:
+                    url = StatusEndpoint.Incidents.ToString().ToLowerInvariant() + "/unresolved";
+                    break;
+                case StatusEndpoint.Scheduled_Maintenances:
+                    url = StatusEndpoint.Scheduled_Maintenances.ToString().ToLowerInvariant().Replace('_', '-');
+                    break;
+                case StatusEndpoint.Scheduled_Maintenances_Upcoming:
+                    url = StatusEndpoint.Scheduled_Maintenances.ToString().ToLowerInvariant().Replace('_', '-') + "/upcoming";
+                    break;
+                case StatusEndpoint.Scheduled_Maintenances_Active:
+                    url = StatusEndpoint.Scheduled_Maintenances.ToString().ToLowerInvariant().Replace('_', '-') + "/active";
+                    break;
+            }
+
             switch (segments.Length)
             {
                 case 0:

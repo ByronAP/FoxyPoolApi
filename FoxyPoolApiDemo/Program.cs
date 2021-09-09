@@ -8,6 +8,27 @@ namespace FoxyPoolApiDemo
     {
         private static async Task Main()
         {
+            //Pool Status
+            Console.WriteLine($"Creating FoxyPool Status Api Client Instance.{Environment.NewLine}");
+            using var apiStatusClient = new PoolStatusApiClient();
+
+            Console.WriteLine("Requesting Pool Status.");
+            var poolStatus = await apiStatusClient.GetStatusAsync();
+            Console.WriteLine($"Received Pool Status for {poolStatus.Page.Name}.{Environment.NewLine}");
+
+            await Task.Delay(500);
+
+            Console.WriteLine("Requesting Pool Upcoming Maintenance.");
+            var poolUpcomingMaintenance = await apiStatusClient.GetScheduledMaintenancesUpcomingAsync();
+            Console.WriteLine($"Received Pool Upcoming Maintenance, {poolUpcomingMaintenance.ScheduledMaintenances.Count} events scheduled.{Environment.NewLine}");
+
+            await Task.Delay(500);
+            Console.WriteLine(Environment.NewLine);
+
+            Console.WriteLine("*************************************************************************************************");
+
+            Console.WriteLine(Environment.NewLine);
+
             // POST
             Console.WriteLine($"Creating FoxyPool POST Api Client Instance.{Environment.NewLine}");
             using var apiPostClient = new PostApiClient(PostPool.Chia_OG);

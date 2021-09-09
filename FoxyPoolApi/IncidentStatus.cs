@@ -6,6 +6,11 @@
         Identified,
         Monitoring,
         Resolved,
-        Postmortem
+        Postmortem,
+        Completed,
+        Under_Maintenance,
+        In_Progress,
+        Scheduled,
+        Verifying
     }
 }

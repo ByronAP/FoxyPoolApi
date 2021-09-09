@@ -62,5 +62,35 @@ namespace FoxyPoolApiTests
 
             Assert.Equal("foxy-pool", incidents.Page.Name.ToLowerInvariant());
         }
+
+        [Fact]
+        public async Task ScheduledMaintenanceTest()
+        {
+            var maintenances = await _apiClient.GetScheduledMaintenancesAsync();
+
+            Assert.NotNull(maintenances);
+
+            Assert.Equal("foxy-pool", maintenances.Page.Name.ToLowerInvariant());
+        }
+
+        [Fact]
+        public async Task ScheduledMaintenanceUpcomingTest()
+        {
+            var maintenances = await _apiClient.GetScheduledMaintenancesUpcomingAsync();
+
+            Assert.NotNull(maintenances);
+
+            Assert.Equal("foxy-pool", maintenances.Page.Name.ToLowerInvariant());
+        }
+
+        [Fact]
+        public async Task ScheduledMaintenanceActiveTest()
+        {
+            var maintenances = await _apiClient.GetScheduledMaintenancesActiveAsync();
+
+            Assert.NotNull(maintenances);
+
+            Assert.Equal("foxy-pool", maintenances.Page.Name.ToLowerInvariant());
+        }
     }
 }

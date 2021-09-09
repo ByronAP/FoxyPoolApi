@@ -8,7 +8,8 @@ namespace FoxyPoolApi
         None,
         Minor,
         Major,
-        Critical
+        Critical,
+        Maintenance
     }
 
     public static class IncidentImpactExtensions
@@ -21,6 +22,7 @@ namespace FoxyPoolApi
                 IncidentImpact.Minor => Color.Yellow,
                 IncidentImpact.Major => Color.Orange,
                 IncidentImpact.Critical => Color.Red,
+                IncidentImpact.Maintenance => Color.Blue,
                 _ => throw new ArgumentOutOfRangeException(nameof(value)),
             };
         }

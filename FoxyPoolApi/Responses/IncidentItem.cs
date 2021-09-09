@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace FoxyPoolApi.Responses
 {
@@ -20,7 +19,7 @@ namespace FoxyPoolApi.Responses
         public List<IncidentUpdateItem>? IncidentUpdates { get; set; }
 
         [JsonProperty("monitoring_at")]
-        public object? MonitoringAt { get; set; }
+        public DateTimeOffset? MonitoringAt { get; set; }
 
         [JsonProperty("name")]
         public string? Name { get; set; }
