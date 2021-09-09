@@ -10,8 +10,8 @@ POST Api Docs: https://api-docs.foxypool.io
 POC Api Docs: https://docs.foxypool.io/proof-of-capacity/foxy-pool/api/overview
 StatusPage: https://foxypool.statuspage.io
 
-Supports POC (REST, Socket.io) and POST (REST) APIs.
-Contains a build in cache to reduce redundant calls.
+Supports POC (REST, Socket.io), POST (REST), and Statuspage (REST) APIs.
+Contains a built in cache to reduce redundant calls.
 
 
 ## Installation
