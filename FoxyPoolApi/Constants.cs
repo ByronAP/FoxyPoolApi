@@ -30,5 +30,9 @@
         // POC socket.io
         public const string PocSocketIOWebUiUrl = "https://api.foxypool.io/web-ui";
         public const string PocSocketIOMiningUrl = "http://miner.foxypool.io/mining";
+
+        // Statuspage
+        public const string PoolStatusRootUrl = "https://foxypool.statuspage.io";
+        public const string PoolStatusApiVersion = "v2";
     }
 }

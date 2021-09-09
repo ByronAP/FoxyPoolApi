@@ -15,11 +15,11 @@
     <RepositoryUrl>https://github.com/ByronAP/FoxyPoolApi</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>foxypool,foxy,pool,api,chia,flax,mining,bhd,signa,post,poc,rest,socketio</PackageTags>
-    <Version>1.2.0</Version>
-    <AssemblyVersion>1.2.0</AssemblyVersion>
-    <FileVersion>1.2.0</FileVersion>
+    <Version>1.2.1</Version>
+    <AssemblyVersion>1.2.1</AssemblyVersion>
+    <FileVersion>1.2.1</FileVersion>
     <PackageIcon>fox-128.png</PackageIcon>
-    <Version>1.2.0</Version>
+    <Version>1.2.1</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
