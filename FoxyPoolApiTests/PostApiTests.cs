@@ -73,7 +73,7 @@ namespace FoxyPoolApiTests
 
             Assert.InRange<ulong>(pool.Height, 1, 9111000);
 
-            Assert.InRange<uint>(pool.Difficulty, 1, 5123);
+            Assert.InRange<uint>(pool.Difficulty, 1, 918240);
         }
 
         [Fact]
