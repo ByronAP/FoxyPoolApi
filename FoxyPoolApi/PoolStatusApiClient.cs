@@ -55,42 +55,42 @@ namespace FoxyPoolApi
 
         public Task<PoolStatusResponse> GetStatusAsync()
         {
-            return GetTAsync<PoolStatusResponse>(StatusEndpoint.Status, 60);
+            return GetTAsync<PoolStatusResponse>(StatusEndpoint.Status, Constants.PoolStatusResponseCacheSeconds);
         }
 
         public Task<PoolSummaryResponse> GetSummaryAsync()
         {
-            return GetTAsync<PoolSummaryResponse>(StatusEndpoint.Summary, 60);
+            return GetTAsync<PoolSummaryResponse>(StatusEndpoint.Summary, Constants.PoolSummaryResponseCacheSeconds);
         }
 
         public Task<PoolComponentsResponse> GetComponentsAsync()
         {
-            return GetTAsync<PoolComponentsResponse>(StatusEndpoint.Components, 60);
+            return GetTAsync<PoolComponentsResponse>(StatusEndpoint.Components, Constants.PoolComponentsResponseCacheSeconds);
         }
 
         public Task<PoolIncidentsResponse> GetIncidentsAsync()
         {
-            return GetTAsync<PoolIncidentsResponse>(StatusEndpoint.Incidents, 60);
+            return GetTAsync<PoolIncidentsResponse>(StatusEndpoint.Incidents, Constants.PoolIncidentsResponseCacheSeconds);
         }
 
         public Task<PoolIncidentsResponse> GetIncidentsUnresolvedAsync()
         {
-            return GetTAsync<PoolIncidentsResponse>(StatusEndpoint.Incidents_Unresolved, 60);
+            return GetTAsync<PoolIncidentsResponse>(StatusEndpoint.Incidents_Unresolved, Constants.PoolIncidentsResponseCacheSeconds);
         }
 
         public Task<PoolScheduledMaintenanceResponse> GetScheduledMaintenancesAsync()
         {
-            return GetTAsync<PoolScheduledMaintenanceResponse>(StatusEndpoint.Scheduled_Maintenances, 60);
+            return GetTAsync<PoolScheduledMaintenanceResponse>(StatusEndpoint.Scheduled_Maintenances, Constants.PoolScheduledMaintenancesResponseCacheSeconds);
         }
 
         public Task<PoolScheduledMaintenanceResponse> GetScheduledMaintenancesUpcomingAsync()
         {
-            return GetTAsync<PoolScheduledMaintenanceResponse>(StatusEndpoint.Scheduled_Maintenances_Upcoming, 60);
+            return GetTAsync<PoolScheduledMaintenanceResponse>(StatusEndpoint.Scheduled_Maintenances_Upcoming, Constants.PoolScheduledMaintenancesResponseCacheSeconds);
         }
 
         public Task<PoolScheduledMaintenanceResponse> GetScheduledMaintenancesActiveAsync()
         {
-            return GetTAsync<PoolScheduledMaintenanceResponse>(StatusEndpoint.Scheduled_Maintenances_Active, 60);
+            return GetTAsync<PoolScheduledMaintenanceResponse>(StatusEndpoint.Scheduled_Maintenances_Active, Constants.PoolScheduledMaintenancesResponseCacheSeconds);
         }
 
         private async Task<T> GetTAsync<T>(StatusEndpoint endpoint, uint cacheSeconds, params string[] segments)
