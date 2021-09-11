@@ -34,5 +34,10 @@
         // Statuspage
         public const string PoolStatusRootUrl = "https://foxypool.statuspage.io";
         public const string PoolStatusApiVersion = "v2";
+        public const uint PoolStatusResponseCacheSeconds = 90;
+        public const uint PoolSummaryResponseCacheSeconds = 60;
+        public const uint PoolComponentsResponseCacheSeconds = 60;
+        public const uint PoolIncidentsResponseCacheSeconds = 60;
+        public const uint PoolScheduledMaintenancesResponseCacheSeconds = 120;
     }
 }
