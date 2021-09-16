@@ -9,7 +9,7 @@ POST Api Docs: https://api-docs.foxypool.io<br/>
 POC Api Docs: https://docs.foxypool.io/proof-of-capacity/foxy-pool/api/overview<br/>
 StatusPage: https://foxypool.statuspage.io
 
-Supports POC (REST, Socket.io), POST (REST), and Statuspage (REST) APIs.
+Supports POC (REST, Socket.io), POST (REST), and Statuspage (REST) APIs.<br/>
 Contains a built in cache to reduce redundant calls.
 
 
@@ -21,7 +21,7 @@ Contains a built in cache to reduce redundant calls.
 ## Usage
 
 #### Client Classes
-* PostApiClient (Chia, Chia OG, Flax OG, Chives OG)
+* PostApiClient (Chia, Chia OG, Flax OG, Chives OG, HDDCoin OG)
 * PocApiClient (BHD, SIGNA)
 * PocSocketIOApiClient (BHD, SIGNA)
 * PoolStatusApiClient (statuspage.io api)
