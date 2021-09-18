@@ -74,7 +74,7 @@ namespace FoxyPoolApiTests
                 throw new Exception("Environment config not set.");
             }
 
-            var historicalResult = await _apiClient.GetAccountHistorical(EnvironmentConfig.PostLauncherId);
+            var historicalResult = await _apiClient.GetAccountHistoricalAsync(EnvironmentConfig.PostLauncherId);
 
             Assert.NotNull(historicalResult);
 
