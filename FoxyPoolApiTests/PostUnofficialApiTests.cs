@@ -65,6 +65,22 @@ namespace FoxyPoolApiTests
             Assert.Equal(accountInfo.MinimumPayout, newMinPayoutAmount);
         }
 
+        [Fact]
+        public async Task GetAccountHistoricalTest()
+        {
+            if (EnvironmentConfig.PostLauncherId.Equals(EnvironmentConfig.DEFAULT))
+            {
+                // test can not be run wiothout a valid config value
+                throw new Exception("Environment config not set.");
+            }
+
+            var historicalResult = await _apiClient.GetAccountHistorical(EnvironmentConfig.PostLauncherId);
+
+            Assert.NotNull(historicalResult);
+
+            Assert.NotEmpty(historicalResult);
+        }
+
         //TODO: add tests for other unofficial/undocumented methods
     }
 }
