@@ -213,6 +213,11 @@ namespace FoxyPoolApi
             return PostAsync(Endpoint.Account, headers, body, launcherId, "rejoin-pool");
         }
 
+        public Task<List<PostAccountHistoricalItem>> GetAccountHistorical(string launcherId)
+        {
+            return GetTAsync<List<PostAccountHistoricalItem>>(Endpoint.Account, Constants.PostAccountResponseCacheSeconds, launcherId, "historical");
+        }
+
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         private Task<IRestResponse> PostAsync(Endpoint endpoint, KeyValuePair<string, string>[] headers, string body, params string[] segments)
         {
