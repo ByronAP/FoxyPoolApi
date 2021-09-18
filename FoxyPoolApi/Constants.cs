@@ -9,7 +9,7 @@
         // POST Pools
         public const string PostPoolBaseUrl = "https://api2.foxypool.io/api";
         public const string PostPoolApiVersion = "v2";
-        // For rate limiting we are using half of the api server cache time
+        // For rate limiting we are using half (or less) of the api server cache time
         // so we have a max lag of half the server cache time.
         public const uint PostConfigResponseCacheSeconds = 300;
         public const uint PostPoolResponseCacheSeconds = 15;
@@ -18,6 +18,7 @@
         public const uint PostRewardsResponseCacheSeconds = 30;
         public const uint PostPayoutsResponseCacheSeconds = 150;
         public const uint PostRatesResponseCacheSeconds = 150;
+        public const uint PostAccountHistoricalResponseCacheSeconds = 300;
 
         // POC Pools
         public const string PocPoolBaseUrl = "https://api.foxypool.io/api";
