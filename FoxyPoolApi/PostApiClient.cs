@@ -158,9 +158,8 @@ namespace FoxyPoolApi
             return _restClient.GetAsync<T>(request);
         }
 
-        #region UNOFFICIAL METHODS
+        #region UDOCUMENTED METHODS
 
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public Task<IRestResponse> UpdateAccountNameAsync(string newName, string launcherId, string authToken)
         {
             var headers = new KeyValuePair<string, string>[] { new KeyValuePair<string, string>("Authorization", $"Bearer {authToken}") };
@@ -170,7 +169,6 @@ namespace FoxyPoolApi
             return PostAsync(Endpoint.Account, headers, body, launcherId, "name");
         }
 
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public Task<IRestResponse> UpdateAccountMinPayoutAmountAsync(decimal newMinPayoutAmount, string launcherId, string authToken)
         {
             if (newMinPayoutAmount < 0.01m)
@@ -183,7 +181,6 @@ namespace FoxyPoolApi
             return PostAsync(Endpoint.Account, headers, body, launcherId, "minimum-payout");
         }
 
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public Task<IRestResponse> UpdateAccountDistributionRatioAmountAsync(string newDistributionRatio, string launcherId, string authToken)
         {
             var headers = new KeyValuePair<string, string>[] { new KeyValuePair<string, string>("Authorization", $"Bearer {authToken}") };
@@ -193,7 +190,6 @@ namespace FoxyPoolApi
             return PostAsync(Endpoint.Account, headers, body, launcherId, "distribution-ratio");
         }
 
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public Task<IRestResponse> UpdateAccountLeavePoolAsync(bool leaveForever, string launcherId, string authToken)
         {
             var headers = new KeyValuePair<string, string>[] { new KeyValuePair<string, string>("Authorization", $"Bearer {authToken}") };
@@ -203,7 +199,6 @@ namespace FoxyPoolApi
             return PostAsync(Endpoint.Account, headers, body, launcherId, "leave-pool");
         }
 
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public Task<IRestResponse> UpdateAccountRejoinPoolAsync(string launcherId, string authToken)
         {
             var headers = new KeyValuePair<string, string>[] { new KeyValuePair<string, string>("Authorization", $"Bearer {authToken}") };
@@ -218,7 +213,6 @@ namespace FoxyPoolApi
             return GetTAsync<List<PostAccountHistoricalItem>>(Endpoint.Account, Constants.PostAccountHistoricalResponseCacheSeconds, launcherId, "historical");
         }
 
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         private Task<IRestResponse> PostAsync(Endpoint endpoint, KeyValuePair<string, string>[] headers, string body, params string[] segments)
         {
             var url = endpoint.ToString().ToLowerInvariant();
