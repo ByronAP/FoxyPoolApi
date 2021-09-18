@@ -215,7 +215,7 @@ namespace FoxyPoolApi
 
         public Task<List<PostAccountHistoricalItem>> GetAccountHistorical(string launcherId)
         {
-            return GetTAsync<List<PostAccountHistoricalItem>>(Endpoint.Account, Constants.PostAccountResponseCacheSeconds, launcherId, "historical");
+            return GetTAsync<List<PostAccountHistoricalItem>>(Endpoint.Account, Constants.PostAccountHistoricalResponseCacheSeconds, launcherId, "historical");
         }
 
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
