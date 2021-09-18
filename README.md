@@ -25,6 +25,7 @@ Contains a built in cache to reduce redundant calls.
 * PocApiClient (BHD, SIGNA)
 * PocSocketIOApiClient (BHD, SIGNA)
 * PoolStatusApiClient (statuspage.io api)
+* Not all PostApiClient calls are documented
 
 [SEE DEMO PROJECT](https://github.com/ByronAP/FoxyPoolApi/blob/main/FoxyPoolApiDemo/Program.cs)
 
