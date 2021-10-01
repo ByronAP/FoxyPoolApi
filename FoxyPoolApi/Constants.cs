@@ -19,6 +19,7 @@
         public const uint PostPayoutsResponseCacheSeconds = 150;
         public const uint PostRatesResponseCacheSeconds = 150;
         public const uint PostAccountHistoricalResponseCacheSeconds = 300;
+        public const uint PostPoolHistoricalResponseCacheSeconds = 900;
 
         // POC Pools
         public const string PocPoolBaseUrl = "https://api.foxypool.io/api";

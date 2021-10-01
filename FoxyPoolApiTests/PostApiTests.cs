@@ -99,5 +99,15 @@ namespace FoxyPoolApiTests
 
             Assert.True(rewards.DailyRewardPerPiB > 0);
         }
+
+        [Fact]
+        public async Task PoolHistoricalTest()
+        {
+            var historical = await _apiClient.GetPoolHistoricalAsync();
+
+            Assert.NotNull(historical);
+
+            Assert.True(historical.Count > 1);
+        }
     }
 }

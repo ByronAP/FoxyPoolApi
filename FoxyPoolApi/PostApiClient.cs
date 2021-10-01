@@ -213,6 +213,11 @@ namespace FoxyPoolApi
             return GetTAsync<List<PostAccountHistoricalItem>>(Endpoint.Account, Constants.PostAccountHistoricalResponseCacheSeconds, launcherId, "historical");
         }
 
+        public Task<List<PostPoolHistoricalItem>> GetPoolHistoricalAsync()
+        {
+            return GetTAsync<List<PostPoolHistoricalItem>>(Endpoint.Pool, Constants.PostPoolHistoricalResponseCacheSeconds, "historical");
+        }
+
         private Task<IRestResponse> PostAsync(Endpoint endpoint, KeyValuePair<string, string>[] headers, string body, params string[] segments)
         {
             var url = endpoint.ToString().ToLowerInvariant();
