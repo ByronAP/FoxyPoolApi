@@ -19,7 +19,6 @@
     <AssemblyVersion>1.5.2</AssemblyVersion>
     <FileVersion>1.5.2</FileVersion>
     <PackageIcon>fox-128.png</PackageIcon>
-    <Version>1.5.2</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
