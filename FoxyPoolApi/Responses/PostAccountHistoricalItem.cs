@@ -1,4 +1,4 @@
-// ***********************************************************************
+﻿// ***********************************************************************
 // Assembly         : FoxyPoolApi
 // Author           : bapen
 // Created          : 09-17-2021
@@ -35,6 +35,24 @@ namespace FoxyPoolApi.Responses
         [JsonProperty("shareCount")]
         public uint ShareCount { get; set; }
 
+        /// <summary>
+        /// Gets or sets the stale shares count.
+        /// </summary>
+        /// <value>The share count.</value>
+        [JsonProperty("staleShares")]
+        public uint StaleShares { get; set; }
+
+        /// <summary>
+        /// Gets or sets the invalid shares count.
+        /// </summary>
+        /// <value>The share count.</value>
+        [JsonProperty("invalidShares")]
+        public uint InvalidShares { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ec.
+        /// </summary>
+        /// <value>The ec.</value>
         [JsonProperty("ec")]
         public decimal Ec { get; set; }
 
