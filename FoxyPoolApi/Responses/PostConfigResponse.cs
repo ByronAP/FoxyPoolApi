@@ -1,4 +1,4 @@
-// ***********************************************************************
+﻿// ***********************************************************************
 // Assembly         : FoxyPoolApi
 // Author           : bapen
 // Created          : 09-05-2021
@@ -145,5 +145,12 @@ namespace FoxyPoolApi.Responses
         /// <value>The farming URL.</value>
         [JsonProperty("farmingUrl")]
         public string? FarmingUrl { get; set; }
+
+        /// <summary>
+        /// Gets or sets the pool reward portion.
+        /// </summary>
+        /// <value>The pool fee.</value>
+        [JsonProperty("poolRewardPortion")]
+        public decimal PoolRewardPortion { get; set; }
     }
 }
