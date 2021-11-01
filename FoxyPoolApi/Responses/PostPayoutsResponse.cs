@@ -1,4 +1,4 @@
-// ***********************************************************************
+﻿// ***********************************************************************
 // Assembly         : FoxyPoolApi
 // Author           : bapen
 // Created          : 09-05-2021
@@ -22,6 +22,13 @@ namespace FoxyPoolApi.Responses
     /// </summary>
     public class PostPayoutsResponse
     {
+        /// <summary>
+        /// Gets or sets the state.
+        /// </summary>
+        /// <value>The state.</value>
+        [JsonProperty("state")]
+        public string? State { get; set; }
+
         /// <summary>
         /// Gets or sets the identifier.
         /// </summary>
@@ -56,6 +63,12 @@ namespace FoxyPoolApi.Responses
         [JsonProperty("coinIds")]
         public List<string>? CoinIds { get; set; }
 
+        /// <summary>
+        /// Gets or sets the state.
+        /// </summary>
+        /// <value>The state.</value>
+        [JsonProperty("state")]
+        public string? State { get; set; }
 
         /// <summary>
         /// Gets or sets the identifier.
