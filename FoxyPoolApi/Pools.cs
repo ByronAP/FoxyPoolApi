@@ -37,7 +37,11 @@ namespace FoxyPoolApi
         /// <summary>
         /// The HDDCoin OG Pool
         /// </summary>
-        HddCoin_OG = 16
+        HddCoin_OG = 16,
+        /// <summary>
+        /// The Stai OG Pool
+        /// </summary>
+        Stai_OG = 32
     }
 
     /// <summary>
