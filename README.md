@@ -21,7 +21,7 @@ Contains a built in cache to reduce redundant calls.
 ## Usage
 
 #### Client Classes
-* PostApiClient (Chia, Chia OG, Flax OG, Chives OG, HDDCoin OG)
+* PostApiClient (Chia, Chia OG, Flax OG, Chives OG, HDDCoin OG, Stai OG)
 * PocApiClient (BHD, SIGNA)
 * PocSocketIOApiClient (BHD, SIGNA)
 * PoolStatusApiClient (statuspage.io api)
