@@ -14,7 +14,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/ByronAP/FoxyPoolApi</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>foxypool,foxy,pool,api,chia,flax,chives,mining,bhd,signa,hddcoin,post,poc,rest,socketio</PackageTags>
+    <PackageTags>foxypool,foxy,pool,api,chia,flax,chives,mining,bhd,signa,hddcoin,stai,staicoin,station,post,poc,rest,socketio</PackageTags>
     <Version>1.5.3</Version>
     <AssemblyVersion>1.5.3</AssemblyVersion>
     <FileVersion>1.5.3</FileVersion>
